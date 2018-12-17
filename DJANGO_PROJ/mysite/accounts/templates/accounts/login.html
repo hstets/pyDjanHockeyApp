@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class=container>
+  <div class=hls>
+  <H1>Welcome!</H1>
+    <p>
+      You can log in here for info on the 2018/2019 Perky White Team!!
+    </p>
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" name="button">Login</button>
+    </form>
+  </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+<h1>home</h1>
+{% block head %}
+    <title>HOME</title>
+{% endblock %}
+
+{% block body %}
+
+  {% if request.user.is_authenticated %}
+    <h1>HOME REPLACED</h1>
+    {{request.user.username}}<BR>
+    <h3> you are authenticated :)</h3>
+    <br>
+    <p>Local time is: {{ time_current }} </p>
+
+    <p>The team has the following record counts:</p>
+      <ul>
+        <li><strong>Player count:</strong> {{ num_of_players }}</li>
+        <li><strong>Team count:</strong> {{ num_of_teams }}</li>
+      </ul>
+      <div class="bg-1">
+      <div class="row text-center">
+       <div class="col-sm-6">
+           <p><strong>Team Player List</strong></p>
+            <p>
+              {% if player_list %}
+                <ul>
+                  {% for player in player_list %}
+                    <li>
+                      Name:{{ player.player_name }},
+                      Position: {{ player.player_position}},
+                      Team: {{ player.team_id }}
+                    </li>
+                  {% endfor %}
+                </ul>
+              </p>
+            {% else %}
+              <p>There are no books in the library.</p>
+            {% endif %}
+            <button class="btn">Buy Tickets</button>
+         </div>
+       </div>
+       <div class="col-sm-6">
+           <p><strong>San Francisco</strong></p>
+           <p>Sun. 29 November 2015</p>
+           <button class="btn">Buy Tickets</button>
+         </div>
+     </div>
+   </div>
+  {% else %}
+    <h3>you are a guest</h3>
+  {% endif %}
+{% endblock %}
+
+<!--body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">-->
+
+<!--<div id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">-->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>-->
+      <a class="navbar-brand" href="#myPage">Welcome {{request.user.username}}</a>
+    </div>
+      <ul class="nav navbar-right">
+        <li><a href="#band">BAND</a></li>
+        <li><a href="#tour">TOUR</a></li>
+      </ul>
+  </div>
+</nav>
+<!--</div>-->
